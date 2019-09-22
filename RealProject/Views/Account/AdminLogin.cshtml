@@ -1,0 +1,77 @@
+﻿@model IEnumerable<RealProject.Models.Ticket>
+
+@{
+    ViewBag.Title = "AdminLogin";
+    if(Session["AdminId"] == null)
+    {
+        Response.Redirect("/Account/Login");
+    }
+}
+
+<h3>hosgeldiniz @Session["AdminName"]</h3>
+<ul class="nav navbar-nav navbar-right">
+    <li>@Html.ActionLink("Log Out", "Logout", "Account")</li>
+</ul>
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.konu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tarih)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.okundu)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.konu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.surname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tarih)
+        </td>
+        <td>
+            @if(item.okundu == 1)
+            {
+                <input type="checkbox" checked disabled/>
+            }
+            else
+            {
+                <input type="checkbox" disabled/>
+            }
+        </td>
+        <td>
+            @if (item.okundu == 1)
+            {
+                <text>Answered</text>
+            }
+            else {
+                @Html.ActionLink("Answer", "Answer", new { id = item.id }) <text> | </text>
+                @Html.ActionLink("Details", "Details", new { id = item.id }) <text> | </text>
+            }
+        </td>
+    </tr>
+}
+</table>

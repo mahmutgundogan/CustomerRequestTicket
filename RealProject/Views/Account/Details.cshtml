@@ -1,0 +1,64 @@
+﻿@model RealProject.Models.Ticket
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Ticket</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.konu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.konu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.problem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.problem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.surname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tarih)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tarih)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.okundu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.okundu)
+        </dd>
+
+    </dl>
+</div>
+

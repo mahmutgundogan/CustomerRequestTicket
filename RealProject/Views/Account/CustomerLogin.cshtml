@@ -1,0 +1,76 @@
+﻿@model IEnumerable<RealProject.Models.Ticket>
+
+@{
+    ViewBag.Title = "CustomerLogin";
+    if (Session["UserId"] == null)
+    {
+        Response.Redirect("/Account/Login");
+    }
+}
+
+<h2>Hos geldiniz @Session["UserName"]</h2>
+
+<ul class="nav navbar-nav navbar-right">
+    <li>@Html.ActionLink("Create New", "Create", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    <li>@Html.ActionLink("Log Out", "Logout", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+</ul>
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.konu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tarih)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.okundu)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.konu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.surname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tarih)
+        </td>
+        <td>
+            @{ var color = "green";}
+            @if(item.okundu == 0)
+            {
+                color = "red";
+                <span style="color:@color">okunmadı</span>
+            }
+            else
+            {
+                <span style="color:@color">okundu</span>
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+        </td>
+    </tr>
+}
+
+</table>
+
